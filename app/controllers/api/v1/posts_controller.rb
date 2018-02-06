@@ -1,5 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   before_action :set_post, only: [:update, :destroy, :comment_create, :comment_index]
+  skip_before_action :authorized, only: [:index]
 
   # GET /posts
   # GET /posts.json

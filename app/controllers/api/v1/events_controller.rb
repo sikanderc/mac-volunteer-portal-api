@@ -1,6 +1,6 @@
 class Api::V1::EventsController < ApplicationController
   before_action :set_event, only: [:update, :destroy, :create_connected]
-
+  skip_before_action :authorized, only: [:index]
   # GET /events
   # GET /events.json
   def index

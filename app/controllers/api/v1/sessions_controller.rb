@@ -6,7 +6,7 @@ class Api::V1::SessionsController < ApplicationController
     if @user && @user.authenticate(user_login_params[:password])
       session[:user_id] = @user.id
       token = encode_token({ user_id: @user.id })
-      render json: { email: @user.email, id: @user.id, jwt: token }, status: 202
+      render json: { email: @user.email, id: @user.id, jwt: token, super_admin: @user.super_admin }, status: 202
     else
       render json: { message: "Invalid email or password." }, status: 401
     end
@@ -15,7 +15,7 @@ class Api::V1::SessionsController < ApplicationController
   def show
     if !!current_user
       # token = encode_token({ user_id: current_user.id })
-      render json: { email: current_user.email, id: current_user.id }, status: 200
+      render json: { email: current_user.email, id: current_user.id, super_admin: current_user.super_admin }, status: 200
     else
       render json: { message: "User not found" }, status: 404
     end
