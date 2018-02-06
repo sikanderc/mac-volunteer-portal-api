@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:update, :destroy]
+  skip_before_action :authorized, only: [:create]
 
   # GET /signup
   # GET /signup.json

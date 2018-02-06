@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-  # skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create]
 
   def create
     @user = User.find_by_email(user_login_params[:email])
@@ -14,8 +14,8 @@ class Api::V1::SessionsController < ApplicationController
 
   def show
     if !!current_user
-      token = encode_token({ user_id: current_user.id })
-      render json: { email: current_user.email, id: current_user.id, jwt: token }, status: 200
+      # token = encode_token({ user_id: current_user.id })
+      render json: { email: current_user.email, id: current_user.id }, status: 200
     else
       render json: { message: "User not found" }, status: 404
     end
