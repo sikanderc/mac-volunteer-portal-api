@@ -24,7 +24,7 @@ class Api::V1::HourLogsController < ApplicationController
     if @hour_log.save
       render json: @hour_log, status: 201
     else
-      render json: { message: "Please make sure to fill all required fields." }, status: 401
+      render json: { error: "Please make sure to fill all required fields." }, status: 400
     end
   end
 
