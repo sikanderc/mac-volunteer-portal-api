@@ -8,6 +8,15 @@ class Api::V1::HourLogsController < ApplicationController
     render json: @hour_logs, status: 200
   end
 
+  def show
+    @user = User.find(params[:id])
+    if @user
+      render json: @user.hour_logs, status: 200
+    else
+      render json: { message: "Unable to find user."}, status: 401
+    end
+  end
+
   # POST /hour_logs
   # POST /hour_logs.json
   def create
@@ -21,13 +30,13 @@ class Api::V1::HourLogsController < ApplicationController
 
   # PATCH/PUT /hour_logs/1
   # PATCH/PUT /hour_logs/1.json
-  def update
-    if @hour_log.update(hour_log_params)
-      render json: @hour_log, status: :201
-    else
-      render json: { message: "Error. Error. Please try again."}, status: 400
-    end
-  end
+  # def update
+  #   if @hour_log.update(hour_log_params)
+  #     render json: @hour_log, status: :201
+  #   else
+  #     render json: { message: "Error. Error. Please try again."}, status: 400
+  #   end
+  # end
 
   # DELETE /hour_logs/1
   # DELETE /hour_logs/1.json

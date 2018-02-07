@@ -34,9 +34,9 @@ Rails.application.routes.draw do
       get '/user_events', to: 'user_events#index'
 
       post '/new_hour_log', to: 'hour_logs#create'
-      get '/hour_logs', to: 'hour_logs#index'
-      put '/hour_logs/:id', to: 'hour_logs#update'
-      delete '/hour_logs/:id', to: 'hour_logs#destroy'
+      get '/hour_log/:id', to: 'hour_logs#show'
+      put '/hour_log/:id', to: 'hour_logs#update'
+      delete '/hour_log/:id', to: 'hour_logs#destroy'
 
     end
   end
